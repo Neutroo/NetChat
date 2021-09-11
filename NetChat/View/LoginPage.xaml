@@ -152,7 +152,7 @@
 
             <TextBlock x:Name="PlaceHolder" 
                        IsHitTestVisible="False" 
-                       Text="Enter your name" 
+                       Text="Username" 
                        TextAlignment="Center" 
                        Width="146" 
                        Height="30"
