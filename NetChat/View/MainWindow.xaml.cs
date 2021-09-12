@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace NetChat.View
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -33,6 +30,12 @@ namespace NetChat.View
         private void ButtonClose(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(ChatPage.Client != null)
+                ChatPage.Client.Disconnect(ChatPage.ClientId);
         }
     }
 }

@@ -137,7 +137,7 @@
                VerticalAlignment="Top" 
                Margin="18,10,18,0" RenderTransformOrigin="0.5,0.5" Background="Transparent"/>
 
-            <TextBox x:Name="InputName" 
+            <TextBox x:Name="Username" 
                      TextAlignment="Center" 
                      Width="146" 
                      Height="30"
@@ -150,7 +150,7 @@
                      RenderTransformOrigin="0.5,0.5">
             </TextBox>
 
-            <TextBlock x:Name="PlaceHolder" 
+            <TextBlock x:Name="Placeholder" 
                        IsHitTestVisible="False" 
                        Text="Username" 
                        TextAlignment="Center" 
@@ -165,7 +165,7 @@
                     <Style TargetType="TextBlock">
                         <Setter Property="Visibility" Value="Collapsed"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=InputName}" Value="">
+                            <DataTrigger Binding="{Binding Text, ElementName=Username}" Value="">
                                 <Setter Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                         </Style.Triggers>

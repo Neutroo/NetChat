@@ -96,6 +96,46 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <SolidColorBrush x:Key="ListBox.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="ListBox.Static.Border" Color="#FFABADB3"/>
+        <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="ListBox.Disabled.Border" Color="#FFD9D9D9"/>
+        <Style x:Key="ListBoxStyle1" TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border x:Name="Bd" CornerRadius="12" BorderBrush="#FF07F3F1" BorderThickness="1" Background="Transparent" Padding="1" SnapsToDevicePixels="true">
+                            <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Border}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsGrouping" Value="true"/>
+                                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -127,24 +167,24 @@
             </Border>
         </Grid>
 
-        <TextBox x:Name="MessageInput" 
+        <TextBox x:Name="MessageBox" 
                  TextAlignment="Left" Height="30"
                  Padding="9, 4, 4, 4"  
-                 Margin="8,682,212,8" 
+                 Margin="8,682,213,8" 
                  Background="Transparent" 
                  BorderBrush="#FF07F3F1" 
                  Foreground="White" 
                  FontSize="15" Style="{DynamicResource TextBoxStyle1}" 
-                 RenderTransformOrigin="0.5,0.5">
+                 RenderTransformOrigin="0.5,0.5" KeyDown="MessageKeyDown">
         </TextBox>
 
-        <TextBlock x:Name="PlaceHolder" 
+        <TextBlock x:Name="Placeholder" 
                    IsHitTestVisible="False" 
                    Text="Message" 
                    TextAlignment="Left" 
                    Height="30"
                    Padding="12, 5, 5, 5" 
-                   Margin="8,682,212,8" 
+                   Margin="8,682,213,8" 
                    FontSize="15" 
                    Opacity="0.3" 
                    Foreground="LightGray">
@@ -152,7 +192,7 @@
                 <Style TargetType="TextBlock">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=MessageInput}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=MessageBox}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -161,11 +201,11 @@
         </TextBlock>
 
         <Button x:Name="Leave" Content="Leave" 
-                Margin="1075,682,7,8" 
-                    Template="{DynamicResource ButtonBaseControlTemplate1}" 
-                    BorderBrush="#FF07F3F1" 
-                    FontSize="15" 
-                    Background="Transparent" Click="ButtonLeave">
+                Margin="1075,682,8,8" 
+                Template="{DynamicResource ButtonBaseControlTemplate1}" 
+                BorderBrush="#FF07F3F1" 
+                FontSize="15" 
+                Background="Transparent" Click="ButtonLeave">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="Transparent"/>
@@ -173,5 +213,29 @@
                 </Style>
             </Button.Style>
         </Button>
+
+        <ListView x:Name="ChatMessages" 
+                  HorizontalAlignment="Left" 
+                  Height="641" 
+                  Margin="10,33,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="1058" 
+                  Background="Transparent" 
+                  Foreground="White" 
+                  BorderBrush="Transparent">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="3"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListView>
+        
+        <ListBox x:Name="OnlineUsersList" 
+                 Height="641" 
+                 Margin="1074,33,8,0" 
+                 VerticalAlignment="Top" 
+                 Background="Transparent" 
+                 Foreground="White" 
+                 Style="{DynamicResource ListBoxStyle1}"/>
     </Grid>
 </Page>

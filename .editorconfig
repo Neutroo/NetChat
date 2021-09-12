@@ -2,3 +2,9 @@
 
 # IDE0011: Добавить фигурные скобки
 dotnet_diagnostic.IDE0011.severity = silent
+
+# IDE0040: Добавьте модификаторы доступности
+dotnet_diagnostic.IDE0040.severity = none
+
+# IDE0008: Использование явного типа
+dotnet_diagnostic.IDE0008.severity = none
