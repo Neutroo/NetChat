@@ -10,62 +10,7 @@
       Background="#FF151523">
 
     <Page.Resources>
-        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
-        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-        <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" 
-                                CornerRadius="12" 
-                                BorderThickness="2" 
-                                SnapsToDevicePixels="True">
-                            <Border.BorderBrush>
-                                <LinearGradientBrush EndPoint="1,1" 
-                                                     MappingMode="RelativeToBoundingBox"  
-                                                     StartPoint="0.3,0">
-                                    <GradientStop Color="#FFAE51E0"/>
-                                    <GradientStop Color="#FF08F4F2" Offset="1.1"/>
-                                </LinearGradientBrush>
-                            </Border.BorderBrush>
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                </MultiTrigger>
-            </Style.Triggers>
-        </Style>
-
+        <!--Button style-->
         <ControlTemplate x:Key="ButtonBaseControlTemplate1" TargetType="{x:Type ButtonBase}">
             <Border x:Name="border" 
                     CornerRadius="12" 
@@ -103,6 +48,8 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        
+        <!--Listbox style-->
         <SolidColorBrush x:Key="ListBox.Static.Background" Color="#FFFFFFFF"/>
         <SolidColorBrush x:Key="ListBox.Static.Border" Color="#FFABADB3"/>
         <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="#FFFFFFFF"/>
@@ -179,6 +126,7 @@
             </Border>
         </Grid>
 
+        <!--Message input-->
         <TextBox x:Name="MessageBox" 
                  TextAlignment="Left" Height="30"
                  Padding="9, 4, 4, 4"  
@@ -186,7 +134,7 @@
                  Background="Transparent" 
                  BorderBrush="#FF07F3F1" 
                  Foreground="White" 
-                 FontSize="15" Style="{DynamicResource TextBoxStyle1}" 
+                 FontSize="15" Style="{DynamicResource {x:Type TextBox}}" 
                  RenderTransformOrigin="0.5,0.5" KeyDown="MessageKeyDown">
         </TextBox>
 
@@ -212,6 +160,7 @@
             </TextBlock.Style>
         </TextBlock>
 
+        <!--Button for leave-->
         <Button x:Name="Leave" Content="Leave" 
                 Margin="1075,682,8,8" 
                 Template="{DynamicResource ButtonBaseControlTemplate1}" 
@@ -226,11 +175,10 @@
             </Button.Style>
         </Button>
 
+        <!--Chat messages-->
         <ListView x:Name="ChatMessages" 
                   HorizontalAlignment="Left" 
-                  Height="641" 
-                  Margin="10,33,0,0" 
-                  VerticalAlignment="Top" 
+                  Margin="10,33,0,46" 
                   Width="1058" 
                   Background="Transparent" 
                   Foreground="White" 
@@ -241,11 +189,9 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListView>
-        
+
         <ListBox x:Name="OnlineUsersList" 
-                 Height="641" 
-                 Margin="1074,33,8,0" 
-                 VerticalAlignment="Top" 
+                 Margin="1074,33,8,46" 
                  Background="Transparent" 
                  Foreground="White" 
                  Style="{DynamicResource ListBoxStyle1}"/>

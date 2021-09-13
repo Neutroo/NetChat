@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NetChat.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280"
+        Title="NetChat" Height="720" Width="1280"
         WindowStyle="None"
         ResizeMode="NoResize" 
         Closing="WindowClosing">

@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:NetChat"
              StartupUri="View\MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary Source="Styles\Scrollbar.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles\Scrollbar.xaml"/>
+                <ResourceDictionary Source="Styles\Textbox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

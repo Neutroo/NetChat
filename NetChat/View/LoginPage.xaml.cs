@@ -34,8 +34,23 @@ namespace NetChat.View
 
         private void ButtonLogIn(object sender, RoutedEventArgs e)
         {
-            ChatPage.Username = Username.Text;                          // Передаем имя пользователя 
-            Application.Current.MainWindow.Content = new ChatPage();    // Переходим на страницу с чатом
+            if (Username.Text != string.Empty)
+            {
+                try
+                {
+                    ChatPage.Username = Username.Text;                          // Передаем имя пользователя 
+                    Application.Current.MainWindow.Content = new ChatPage();    // Переходим на страницу с чатом
+                }
+                catch (System.ServiceModel.EndpointNotFoundException)
+                {
+                    Application.Current.MainWindow.Content = new ServerErrorPage();
+                }
+            }
+            else
+            {
+                ValidationError.Text = "*Username is required.";
+                ValidationError.Visibility = Visibility.Visible;
+            }
         }
     }
 }

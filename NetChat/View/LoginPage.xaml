@@ -7,68 +7,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="LoginPage">
-
     <Page.Background>
         <ImageBrush ImageSource="/Images/background.jpg"/>
     </Page.Background>
 
     <Page.Resources>
-        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
-        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-        <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" 
-                                CornerRadius="12" 
-                                BorderThickness="2" 
-                                SnapsToDevicePixels="True">
-                            <Border.BorderBrush>
-                                <LinearGradientBrush EndPoint="1,1" 
-                                                     MappingMode="RelativeToBoundingBox"  
-                                                     StartPoint="0.3,0">
-                                    <GradientStop Color="#FFAE51E0"/>
-                                    <GradientStop Color="#FF08F4F2" Offset="1.1"/>
-                                </LinearGradientBrush>
-                            </Border.BorderBrush>
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                </MultiTrigger>
-            </Style.Triggers>
-        </Style>
-
         <ControlTemplate x:Key="ButtonBaseControlTemplate1" TargetType="{x:Type ButtonBase}">
             <Border x:Name="border"
                     CornerRadius="12"               
@@ -116,8 +59,6 @@
         </ControlTemplate>
     </Page.Resources>
 
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -149,7 +90,7 @@
             <Label Content="NetChat" 
                     FontSize="55"
                     VerticalAlignment="Top" 
-                    Margin="18,13,18,0" 
+                    Margin="18,15,18,0" 
                     RenderTransformOrigin="0.5,0.5" Background="Transparent">
                 <Label.Foreground>
                     <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox"  StartPoint="0.3,0">
@@ -159,16 +100,17 @@
                 </Label.Foreground>
             </Label>
 
+            <!--Username input-->
             <TextBox x:Name="Username" 
                      TextAlignment="Center" 
                      Width="146" 
                      Height="30"
                      Padding="4, 4, 4, 4"  
                      Margin="51,116,51,84" 
-                     Background="Transparent" 
-                     BorderBrush="#FF07F3F1" 
+                     Background="Transparent"                      
                      Foreground="White" 
-                     FontSize="15" Style="{DynamicResource TextBoxStyle1}" 
+                     FontSize="15" 
+                     Style="{DynamicResource {x:Type TextBox}}" 
                      RenderTransformOrigin="0.5,0.5">
             </TextBox>
 
@@ -195,6 +137,7 @@
                 </TextBlock.Style>
             </TextBlock>
 
+            <!--Button for login-->
             <Button Content="Log in" 
                     Margin="51,141,51,34"
                     VerticalAlignment="Center"
@@ -202,8 +145,7 @@
                     Height="30" 
                     Template="{DynamicResource ButtonBaseControlTemplate1}" 
                     BorderBrush="#FF07F3F1" 
-                    FontSize="15" 
-                    Background="Transparent" Click="ButtonLogIn">
+                    FontSize="15" Click="ButtonLogIn" Background="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="Transparent"/>
@@ -211,6 +153,18 @@
                     </Style>
                 </Button.Style>
             </Button>
+
+            <!--Validation-->
+            <TextBlock x:Name="ValidationError" 
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       Padding="5, 5, 5, 5"        
+                       FontSize="11" 
+                       Opacity="0.7" 
+                       Foreground="red" 
+                       Margin="18,192,18,12"
+                       Visibility="Hidden">
+            </TextBlock>
         </Grid>
     </Grid>
 

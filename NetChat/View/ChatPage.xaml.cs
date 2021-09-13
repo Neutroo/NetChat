@@ -26,6 +26,8 @@ namespace NetChat.View
             InitializeComponent();
             Client = new Service.ServiceClient(new System.ServiceModel.InstanceContext(this));      // Создаем клиента
             ClientId = Client.Connect(Username);                                                    // Запоминаем Id и присоединяемся к сервису
+            if(Client.State == System.ServiceModel.CommunicationState.Faulted)                      // Если ошибка в состоянии объекта
+                throw new System.ServiceModel.EndpointNotFoundException();
         }
 
         public void MessageCallback(string message)
