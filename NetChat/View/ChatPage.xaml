@@ -29,9 +29,16 @@
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Border x:Name="border" 
                                 CornerRadius="12" 
-                                BorderBrush="#FF07F3F1" 
-                                BorderThickness="1" 
+                                BorderThickness="2" 
                                 SnapsToDevicePixels="True">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="1,1" 
+                                                     MappingMode="RelativeToBoundingBox"  
+                                                     StartPoint="0.3,0">
+                                    <GradientStop Color="#FFAE51E0"/>
+                                    <GradientStop Color="#FF08F4F2" Offset="1.1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -63,7 +70,7 @@
             <Border x:Name="border" 
                     CornerRadius="12" 
                     BorderBrush="#FF07F3F1" 
-                    BorderThickness="1" 
+                    BorderThickness="2" 
                     SnapsToDevicePixels="True">
                 <ContentPresenter x:Name="contentPresenter"                          
                                   ContentStringFormat="{TemplateBinding ContentStringFormat}" 
@@ -114,15 +121,21 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListBox}">
-                        <Border x:Name="Bd" CornerRadius="12" BorderBrush="#FF07F3F1" BorderThickness="1" Background="Transparent" Padding="1" SnapsToDevicePixels="true">
+                        <Border x:Name="border" 
+                                CornerRadius="12" 
+                                BorderBrush="#FF07F3F1" 
+                                BorderThickness="2" 
+                                Background="Transparent"
+                                Padding="1" 
+                                SnapsToDevicePixels="true">
                             <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
                                 <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </ScrollViewer>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Border}"/>
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource ListBox.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ListBox.Disabled.Border}"/>
                             </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
@@ -139,14 +152,13 @@
     </Page.Resources>
 
     <Grid>
-        <Grid Margin="0,1,0,-1">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-
-            <Border MouseDown="Border_MouseDown" Margin="0,-1,0,1">
+            <Border MouseDown="Border_MouseDown">
                 <Border.Background>
                     <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox"  StartPoint="0.3,0" Opacity="0.75">
                         <GradientStop Color="#FF830A85"/>

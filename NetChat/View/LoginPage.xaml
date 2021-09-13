@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NetChat.View"
       mc:Ignorable="d" 
-      d:DesignHeight="695" d:DesignWidth="1280"
+      d:DesignHeight="720" d:DesignWidth="1280"
       Title="LoginPage">
 
     <Page.Background>
@@ -32,9 +32,16 @@
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Border x:Name="border" 
                                 CornerRadius="12" 
-                                BorderBrush="#FF07F3F1" 
-                                BorderThickness="1" 
+                                BorderThickness="2" 
                                 SnapsToDevicePixels="True">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="1,1" 
+                                                     MappingMode="RelativeToBoundingBox"  
+                                                     StartPoint="0.3,0">
+                                    <GradientStop Color="#FFAE51E0"/>
+                                    <GradientStop Color="#FF08F4F2" Offset="1.1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -63,11 +70,18 @@
         </Style>
 
         <ControlTemplate x:Key="ButtonBaseControlTemplate1" TargetType="{x:Type ButtonBase}">
-            <Border x:Name="border" 
-                    CornerRadius="12" 
-                    BorderBrush="#FF07F3F1" 
-                    BorderThickness="1" 
+            <Border x:Name="border"
+                    CornerRadius="12"               
+                    BorderThickness="2" 
                     SnapsToDevicePixels="True">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="1,1" 
+                                         MappingMode="RelativeToBoundingBox"  
+                                         StartPoint="0.3,0">
+                        <GradientStop Color="#FFAE51E0"/>
+                        <GradientStop Color="#FF08F4F2" Offset="1.1"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
                 <ContentPresenter x:Name="contentPresenter"                          
                                   ContentStringFormat="{TemplateBinding ContentStringFormat}" 
                                   Focusable="False" 
@@ -82,6 +96,7 @@
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" TargetName="border" Value="#FF07F3F1"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF07F3F1"/>
                     <Setter Property="Foreground" Value="#FF000000"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
@@ -103,13 +118,13 @@
 
 
 
-    <Grid Margin="0,1,0,-1">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border MouseDown="Border_MouseDown" Margin="0,-1,0,1" Panel.ZIndex="1">
+        <Border MouseDown="Border_MouseDown" Panel.ZIndex="1">
             <Border.Background>
                 <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox"  StartPoint="0.3,0" Opacity="0.75">
                     <GradientStop Color="#FF830A85"/>
@@ -132,17 +147,24 @@
         <Grid Margin="516,212,516,253" Grid.Row="1">
             <Border Background="#FF151523" CornerRadius="22" Opacity="0.825"/>
             <Label Content="NetChat" 
-               Foreground="#FF07F3F1" 
-               FontSize="55"
-               VerticalAlignment="Top" 
-               Margin="18,10,18,0" RenderTransformOrigin="0.5,0.5" Background="Transparent"/>
+                    FontSize="55"
+                    VerticalAlignment="Top" 
+                    Margin="18,13,18,0" 
+                    RenderTransformOrigin="0.5,0.5" Background="Transparent">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox"  StartPoint="0.3,0">
+                        <GradientStop Color="#FFAE51E0"/>
+                        <GradientStop Color="#FF08F4F2" Offset="1.1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
 
             <TextBox x:Name="Username" 
                      TextAlignment="Center" 
                      Width="146" 
                      Height="30"
                      Padding="4, 4, 4, 4"  
-                     Margin="51,104,51,71" 
+                     Margin="51,116,51,84" 
                      Background="Transparent" 
                      BorderBrush="#FF07F3F1" 
                      Foreground="White" 
@@ -157,7 +179,7 @@
                        Width="146" 
                        Height="30"
                        Padding="5, 5, 5, 5" 
-                       Margin="51,104,51,71" 
+                       Margin="51,116,51,84" 
                        FontSize="15" 
                        Opacity="0.3" 
                        Foreground="LightGray">
