@@ -49,9 +49,16 @@
                        Padding="5, 5, 5, 5"        
                        FontSize="15" 
                        Foreground="White"
-                       Margin="468,354,468,308" Grid.Row="1" Height="33">
+                       Margin="468,354,468,308" 
+                       Grid.Row="1" 
+                       Height="33">
             </TextBlock>
-            <Image Margin="583,250,583,338" Source="/NetChat;component/Images/serversleep.png" Stretch="Fill" Grid.Row="1" Opacity="0.9"/>
+            
+            <Image Margin="583,250,583,338" 
+                   Source="/NetChat;component/Images/serversleep.png" 
+                   Stretch="Fill" 
+                   Grid.Row="1" 
+                   Opacity="0.9"/>
         </Grid>
     </Grid>
 </Page>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 
-namespace NetChatService
+namespace NetChatService.Model
 {
     public class User
     {

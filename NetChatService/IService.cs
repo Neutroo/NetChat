@@ -1,9 +1,7 @@
-﻿using System;
+﻿using System.ServiceModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+using NetChatService.Model;
+
 
 namespace NetChatService
 {
@@ -16,11 +14,13 @@ namespace NetChatService
         void Disconnect(int id);                        // Отключение пользователя от сервиса
         [OperationContract(IsOneWay = true)]
         void SendMessage(string message, int id = 0);   // Отправка сообщения от пользователя - сервису
+        [OperationContract]
+        IEnumerable<string> UsersList();                // Получение списка пользователей
     }
 
     public interface IServerCallback
     {
         [OperationContract(IsOneWay = true)]
-        void MessageCallback(string message);           // Отправка сообщения от сервиса - всем пользователям
+        void MessageCallback(string message);           // Отправка сообщения от сервиса всем пользователям
     }
 }

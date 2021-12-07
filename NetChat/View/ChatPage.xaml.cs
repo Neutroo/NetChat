@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,33 +13,36 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ServiceModel;
+using NetChatClient.Service;
 
 namespace NetChat.View
 {
-    public partial class ChatPage : Page, Service.IServiceCallback
+    public partial class ChatPage : Page, IServiceCallback
     {
-        public static Service.ServiceClient Client { get; set; }
+        public static ServiceClient Client { get; set; }
         public static int ClientId { get; set; }
         public static string Username { get; set; }
 
         public ChatPage()
         {
             InitializeComponent();
-            Client = new Service.ServiceClient(new System.ServiceModel.InstanceContext(this));      // Создаем клиента
-            ClientId = Client.Connect(Username);                                                    // Запоминаем Id и присоединяемся к сервису
-            if(Client.State == System.ServiceModel.CommunicationState.Faulted)                      // Если ошибка в состоянии объекта
-                throw new System.ServiceModel.EndpointNotFoundException();
+            Client = new ServiceClient(new InstanceContext(this));              // Создаем клиента
+            ClientId = Client.Connect(Username);                                // Запоминаем Id и присоединяемся к сервису
+            if (Client.State == CommunicationState.Faulted)                     // Если ошибка в состоянии объекта
+                throw new EndpointNotFoundException();
         }
 
         public void MessageCallback(string message)
         {
             ChatMessages.Items.Add(message);                                                        // Выводим сообщения от пользователя на экран
-            ChatMessages.ScrollIntoView(ChatMessages.Items[ChatMessages.Items.Count - 1]);          // Скролим до самого последнего сообщения
+            ChatMessages.ScrollIntoView(ChatMessages.Items[ChatMessages.Items.Count - 1]);          // Скролим до самого последнего сообщения           
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed) Application.Current.MainWindow.DragMove();
+            if (e.LeftButton == MouseButtonState.Pressed)
+                Application.Current.MainWindow.DragMove();
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)

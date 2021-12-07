@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E0F4098A-4D16-4BA0-BA57-AF5F7CECE087}</ProjectGuid>
+    <ProjectGuid>{74207AC2-195F-4091-8FA1-DD25ACE753EC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Host</RootNamespace>
     <AssemblyName>Host</AssemblyName>
@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NetChatService\NetChatService.csproj">

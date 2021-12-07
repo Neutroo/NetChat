@@ -8,7 +8,8 @@
         Title="NetChat" Height="720" Width="1280"
         WindowStyle="None"
         ResizeMode="NoResize" 
-        Closing="WindowClosing">
+        Closing="WindowClosing"
+        WindowStartupLocation="CenterScreen">
 
     <Frame x:Name="MainFrame" Height="720"></Frame>
 </Window>

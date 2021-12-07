@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NetChat.Service {
+namespace NetChatClient.Service {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.IService", CallbackContract=typeof(NetChat.Service.IServiceCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.IService", CallbackContract=typeof(NetChatClient.Service.IServiceCallback))]
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Connect", ReplyAction="http://tempuri.org/IService/ConnectResponse")]
@@ -32,6 +32,12 @@ namespace NetChat.Service {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/SendMessage")]
         System.Threading.Tasks.Task SendMessageAsync(string message, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UsersList", ReplyAction="http://tempuri.org/IService/UsersListResponse")]
+        string[] UsersList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UsersList", ReplyAction="http://tempuri.org/IService/UsersListResponse")]
+        System.Threading.Tasks.Task<string[]> UsersListAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -42,12 +48,12 @@ namespace NetChat.Service {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceChannel : NetChat.Service.IService, System.ServiceModel.IClientChannel {
+    public interface IServiceChannel : NetChatClient.Service.IService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceClient : System.ServiceModel.DuplexClientBase<NetChat.Service.IService>, NetChat.Service.IService {
+    public partial class ServiceClient : System.ServiceModel.DuplexClientBase<NetChatClient.Service.IService>, NetChatClient.Service.IService {
         
         public ServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
@@ -91,6 +97,14 @@ namespace NetChat.Service {
         
         public System.Threading.Tasks.Task SendMessageAsync(string message, int id) {
             return base.Channel.SendMessageAsync(message, id);
+        }
+        
+        public string[] UsersList() {
+            return base.Channel.UsersList();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> UsersListAsync() {
+            return base.Channel.UsersListAsync();
         }
     }
 }
