@@ -38,6 +38,12 @@ namespace NetChatClient.Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UsersList", ReplyAction="http://tempuri.org/IService/UsersListResponse")]
         System.Threading.Tasks.Task<string[]> UsersListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/GetUpdate")]
+        void GetUpdate();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/GetUpdate")]
+        System.Threading.Tasks.Task GetUpdateAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -45,6 +51,9 @@ namespace NetChatClient.Service {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/MessageCallback")]
         void MessageCallback(string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/Update")]
+        void Update();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -105,6 +114,14 @@ namespace NetChatClient.Service {
         
         public System.Threading.Tasks.Task<string[]> UsersListAsync() {
             return base.Channel.UsersListAsync();
+        }
+        
+        public void GetUpdate() {
+            base.Channel.GetUpdate();
+        }
+        
+        public System.Threading.Tasks.Task GetUpdateAsync() {
+            return base.Channel.GetUpdateAsync();
         }
     }
 }

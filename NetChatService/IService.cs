@@ -16,11 +16,15 @@ namespace NetChatService
         void SendMessage(string message, int id = 0);   // Отправка сообщения от пользователя - сервису
         [OperationContract]
         IEnumerable<string> UsersList();                // Получение списка пользователей
+        [OperationContract(IsOneWay = true)]
+        void GetUpdate();                               // Запрос на обновление
     }
 
     public interface IServerCallback
     {
         [OperationContract(IsOneWay = true)]
         void MessageCallback(string message);           // Отправка сообщения от сервиса всем пользователям
+        [OperationContract(IsOneWay = true)]
+        void Update();                                  // Обновление данных
     }
 }

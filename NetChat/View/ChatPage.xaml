@@ -55,7 +55,7 @@
         <SolidColorBrush x:Key="ListBox.Static.Border" Color="#FFABADB3"/>
         <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="#FFFFFFFF"/>
         <SolidColorBrush x:Key="ListBox.Disabled.Border" Color="#FFD9D9D9"/>
-        <Style x:Key="ListBoxStyle1" TargetType="{x:Type ListBox}">
+        <Style x:Key="ListBoxStyle" TargetType="{x:Type ListBox}">
             <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -106,7 +106,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Border MouseDown="Border_MouseDown">
+            <Border MouseDown="BorderMouseDown">
                 <Border.Background>
                     <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox"  StartPoint="0.3,0" Opacity="0.75">
                         <GradientStop Color="#FF830A85"/>
@@ -121,31 +121,30 @@
                             Background="Transparent"
                             BorderThickness="0" 
                             Click="ButtonClose"/>
-
                     </StackPanel>
                 </Grid>
             </Border>
         </Grid>
 
         <!--Message input-->
-        <TextBox x:Name="MessageBox" 
+        <TextBox x:Name="messageBox" 
                  TextAlignment="Left" Height="30"
                  Padding="9, 4, 4, 4"  
                  Margin="8,682,213,8" 
                  Background="Transparent" 
                  BorderBrush="#FF07F3F1" 
                  Foreground="White" 
-                 FontSize="15" Style="{DynamicResource {x:Type TextBox}}" 
+                 FontSize="14" Style="{DynamicResource {x:Type TextBox}}" 
                  RenderTransformOrigin="0.5,0.5" KeyDown="MessageKeyDown"/>
 
-        <TextBlock x:Name="Placeholder" 
+        <TextBlock x:Name="placeholder" 
                    IsHitTestVisible="False" 
                    Text="Message" 
                    TextAlignment="Left" 
                    Height="30"
                    Padding="12, 5, 5, 5" 
                    Margin="8,682,213,8" 
-                   FontSize="15" 
+                   FontSize="14" 
                    Opacity="0.3" 
                    Foreground="LightGray">
             <TextBlock.Style>
@@ -161,7 +160,7 @@
         </TextBlock>
 
         <!--Button for leave-->
-        <Button x:Name="Leave" Content="Leave" 
+        <Button x:Name="leave" Content="Leave" 
                 Margin="1075,682,8,8" 
                 Template="{DynamicResource ButtonBaseControlTemplate1}" 
                 BorderBrush="#FF07F3F1" 
@@ -176,7 +175,7 @@
         </Button>
 
         <!--Chat messages-->
-        <ListView x:Name="ChatMessages" 
+        <ListView x:Name="chatMessages" 
                   HorizontalAlignment="Left" 
                   Margin="10,33,0,46" 
                   Width="1058" 
@@ -190,20 +189,43 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
-        <ListBox x:Name="UsersList" 
+        <!--Users list-->
+        <ListBox x:Name="usersList" 
                  Margin="1075,54,8,46" 
-                 Background="Transparent" 
                  Foreground="White" 
-                 Style="{DynamicResource ListBoxStyle1}"/>
+                 Style="{DynamicResource ListBoxStyle}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <ListBoxItem x:Name="Item">
+                                    <ContentPresenter/>
+                                </ListBoxItem>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="Item" Property="Foreground" Value="#FFAE51E0"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter TargetName="Item" Property="Foreground" Value="Black"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
 
-        <TextBlock x:Name="AmountUsers" 
-                       Text="users online: 0"
-                       VerticalAlignment="Center"
-                       TextAlignment="LEft"
-                       Padding="5, 5, 5, 5"        
-                       FontSize="13" 
-                       Foreground="White"
-                       Margin="1075,26,8,666" 
-                       Height="28"/>
+        <TextBlock x:Name="amountUsers" 
+                   Text="users online: 0"
+                   VerticalAlignment="Center"
+                   TextAlignment="Left"
+                   Padding="5, 5, 5, 5"        
+                   FontSize="13" 
+                   Foreground="White"
+                   Margin="1075,26,8,666" 
+                   Height="28"/>
     </Grid>
 </Page>

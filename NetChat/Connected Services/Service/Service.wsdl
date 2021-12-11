@@ -57,8 +57,14 @@
   <wsdl:message name="IService_UsersList_OutputMessage">
     <wsdl:part name="parameters" element="tns:UsersListResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_GetUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpdate" />
+  </wsdl:message>
   <wsdl:message name="IService_MessageCallback_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MessageCallback" />
+  </wsdl:message>
+  <wsdl:message name="IService_Update_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
   </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="Connect">
@@ -76,8 +82,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/UsersList" message="tns:IService_UsersList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/UsersListResponse" message="tns:IService_UsersList_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetUpdate" message="tns:IService_GetUpdate_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MessageCallback">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/MessageCallback" message="tns:IService_MessageCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/Update" message="tns:IService_Update_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
@@ -116,8 +128,20 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUpdate">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="MessageCallback">
       <soap12:operation soapAction="http://tempuri.org/IService/MessageCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://tempuri.org/IService/Update" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

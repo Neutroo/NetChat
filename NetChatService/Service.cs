@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using NetChatService.Model;
 
 namespace NetChatService
@@ -20,13 +21,14 @@ namespace NetChatService
                 Name = name,
                 OpContext = OperationContext.Current
             };
+
             SendMessage($"{user.Name} joined the chat.");
             _users.Add(user);
 
             return user.Id;
         }
 
-        public void Disconnect(int id)
+        public void Disconnect(int id) 
         {
             User user = _users.FirstOrDefault(u => u.Id == id);         // Ищем пользователя из списка по id
             if (user != null)                                           // Если такой есть
@@ -34,6 +36,8 @@ namespace NetChatService
                 _users.Remove(user);                                    // Удаляем
                 SendMessage($"{user.Name} left the chat.");
             }
+
+            GetUpdate();
         }
 
         public void SendMessage(string message, int id = 0)
@@ -46,13 +50,22 @@ namespace NetChatService
                     $"{user.Name} {DateTime.Now.ToShortTimeString()}\n{message}" :  // Сообщение пользователя
                     $"{message} {DateTime.Now.ToShortTimeString()}";                // Сообщения о подключении/отключении пользователя
 
-                elem.OpContext.GetCallbackChannel<IServerCallback>().MessageCallback($"{answer}");
+                elem.OpContext.GetCallbackChannel<IServerCallback>().MessageCallback($"{answer}");               
             }
+        }
+
+        public void GetUpdate()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                foreach (User elem in _users)
+                    elem.OpContext.GetCallbackChannel<IServerCallback>().Update();
+            });
         }
 
         public IEnumerable<string> UsersList()
         {
-            foreach (User user in _users)  
+            foreach (User user in _users)
                 yield return user.Name;
         }
     }

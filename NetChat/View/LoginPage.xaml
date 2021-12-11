@@ -110,7 +110,7 @@
                      Margin="51,116,51,84" 
                      Background="Transparent"                      
                      Foreground="White" 
-                     FontSize="15" 
+                     FontSize="14" 
                      Style="{DynamicResource {x:Type TextBox}}" 
                      RenderTransformOrigin="0.5,0.5">
             </TextBox>
@@ -123,7 +123,7 @@
                        Height="30"
                        Padding="5, 5, 5, 5" 
                        Margin="51,116,51,84" 
-                       FontSize="15" 
+                       FontSize="14" 
                        Opacity="0.3" 
                        Foreground="LightGray">
                 <TextBlock.Style>
@@ -146,7 +146,7 @@
                     Height="30" 
                     Template="{DynamicResource ButtonBaseControlTemplate1}" 
                     BorderBrush="#FF07F3F1" 
-                    FontSize="15" Click="ButtonLogIn" Background="Transparent">
+                    FontSize="14" Click="ButtonLogIn" Background="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="Transparent"/>

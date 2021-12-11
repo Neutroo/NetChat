@@ -24,7 +24,8 @@ namespace NetChat.View
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed) Application.Current.MainWindow.DragMove();    
+            if (e.LeftButton == MouseButtonState.Pressed) 
+                Application.Current.MainWindow.DragMove();    
         }
 
         private void ButtonClose(object sender, RoutedEventArgs e)
@@ -38,8 +39,7 @@ namespace NetChat.View
             {
                 try
                 {
-                    ChatPage.Username = Username.Text;                          // Передаем имя пользователя 
-                    Application.Current.MainWindow.Content = new ChatPage();    // Переходим на страницу с чатом
+                    Application.Current.MainWindow.Content = new ChatPage(Username.Text);    // Переходим на страницу с чатом
                 }
                 catch (System.ServiceModel.EndpointNotFoundException)
                 {
