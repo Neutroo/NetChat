@@ -31,7 +31,7 @@ namespace NetChatService
         public void Disconnect(int id) 
         {
             User user = users.FirstOrDefault(u => u.Id == id);         // Ищем пользователя из списка по id
-            if (user != null)                                          // Если такой есть
+            if (user != null)                                           // Если такой есть
             {
                 users.Remove(user);                                    // Удаляем
                 SendMessage($"{user.Name} left the chat.");
@@ -44,7 +44,7 @@ namespace NetChatService
         {
             foreach (var elem in users)
             {
-                var user = users.FirstOrDefault(u => u.Id == id);                   // Ищем пользователя из списка по id
+                var user = users.FirstOrDefault(u => u.Id == id);                  // Ищем пользователя из списка по id
 
                 string answer = (user != null) ?
                     $"{user.Name} {DateTime.Now.ToShortTimeString()}\n{message}" :  // Сообщение пользователя
