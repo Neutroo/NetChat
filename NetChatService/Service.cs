@@ -10,30 +10,30 @@ namespace NetChatService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]     // Создание единого сервиса для всех клиентов
     public class Service : IService
     {
-        private List<User> _users = new List<User>();   // Список пользователей присоединенных к сервису
-        private int _genId = 1;                         // Для создания уникального id пользователя
+        private List<User> users = new List<User>();   // Список пользователей присоединенных к сервису
+        private int genId = 1;                         // Для создания уникального id пользователя
 
         public int Connect(string name)
         {
             User user = new User()
             {
-                Id = _genId++,                          
+                Id = genId++,                          
                 Name = name,
                 OpContext = OperationContext.Current
             };
 
             SendMessage($"{user.Name} joined the chat.");
-            _users.Add(user);
+            users.Add(user);
 
             return user.Id;
         }
 
         public void Disconnect(int id) 
         {
-            User user = _users.FirstOrDefault(u => u.Id == id);         // Ищем пользователя из списка по id
+            User user = users.FirstOrDefault(u => u.Id == id);         // Ищем пользователя из списка по id
             if (user != null)                                           // Если такой есть
             {
-                _users.Remove(user);                                    // Удаляем
+                users.Remove(user);                                    // Удаляем
                 SendMessage($"{user.Name} left the chat.");
             }
 
@@ -42,9 +42,9 @@ namespace NetChatService
 
         public void SendMessage(string message, int id = 0)
         {
-            foreach (var elem in _users)
+            foreach (var elem in users)
             {
-                var user = _users.FirstOrDefault(u => u.Id == id);                  // Ищем пользователя из списка по id
+                var user = users.FirstOrDefault(u => u.Id == id);                  // Ищем пользователя из списка по id
 
                 string answer = (user != null) ?
                     $"{user.Name} {DateTime.Now.ToShortTimeString()}\n{message}" :  // Сообщение пользователя
@@ -58,14 +58,14 @@ namespace NetChatService
         {
             Task.Factory.StartNew(() =>
             {
-                foreach (User elem in _users)
+                foreach (User elem in users)
                     elem.OpContext.GetCallbackChannel<IServerCallback>().Update();
             });
         }
 
         public IEnumerable<string> UsersList()
         {
-            foreach (User user in _users)
+            foreach (User user in users)
                 yield return user.Name;
         }
     }
