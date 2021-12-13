@@ -12,12 +12,10 @@ namespace NetChat.View
     {
         public static ServiceClient Client { get; private set; }
         public static int ClientId { get; private set; }
-        private string username;
 
         public ChatPage(string username)
         {
             InitializeComponent();
-            this.username = username;
             Client = new ServiceClient(new InstanceContext(this));              // Создаем клиента
             ClientId = Client.Connect(username);                                // Запоминаем Id и присоединяемся к сервису
             if (Client.State == CommunicationState.Faulted)                     // Если ошибка в состоянии объекта
