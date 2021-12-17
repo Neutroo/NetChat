@@ -17,7 +17,7 @@ namespace NetChatService
         {
             User user = new User()
             {
-                Id = genId++,                          
+                Id = genId++,
                 Name = name,
                 OpContext = OperationContext.Current
             };
@@ -28,7 +28,7 @@ namespace NetChatService
             return user.Id;
         }
 
-        public void Disconnect(int id) 
+        public void Disconnect(int id)
         {
             User user = users.FirstOrDefault(u => u.Id == id);         // Ищем пользователя из списка по id
             if (user != null)                                          // Если такой есть
@@ -50,7 +50,7 @@ namespace NetChatService
                     $"{user.Name} {DateTime.Now.ToShortTimeString()}\n{message}" :  // Сообщение пользователя
                     $"{message} {DateTime.Now.ToShortTimeString()}";                // Сообщения о подключении/отключении пользователя
 
-                elem.OpContext.GetCallbackChannel<IServerCallback>().MessageCallback($"{answer}");               
+                elem.OpContext.GetCallbackChannel<IServerCallback>().MessageCallback($"{answer}");
             }
         }
 

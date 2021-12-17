@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using System.Xml.Serialization;
 
 namespace NetChatService.Model
 {
