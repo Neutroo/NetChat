@@ -1,6 +1,5 @@
 ﻿using System.ServiceModel;
 using System.Collections.Generic;
-using NetChatService.Model;
 
 
 namespace NetChatService
