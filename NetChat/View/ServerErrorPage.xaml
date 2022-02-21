@@ -55,7 +55,7 @@
             </TextBlock>
             
             <Image Margin="583,250,583,338" 
-                   Source="/NetChat;component/Images/serversleep.png" 
+                   Source="/NetChatClient;component/Images/serversleep.png" 
                    Stretch="Fill" 
                    Grid.Row="1" 
                    Opacity="0.9"/>
