@@ -31,5 +31,8 @@ To download a copy of the project [click here](https://github.com/neutroo/NetCha
 * [WPF](https://docs.microsoft.com/ru-ru/visualstudio/designers/getting-started-with-wpf?view=vs-2022) - Used for creating client layer
 * [WCF](https://docs.microsoft.com/ru-ru/dotnet/framework/wcf/whats-wcf) - Used for creating server/service layer
 
+## Authors
+* Rodion Kushnarenko - [Neutro](https://github.com/Neutroo)
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/neutroo/NetChat/blob/master/LICENSE) file for details.
