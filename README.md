@@ -24,7 +24,7 @@ To download a copy of the project [click here](https://github.com/neutroo/NetCha
 
 6. Enter your username and start chatting:
 
-![chatPage](https://raw.githubusercontent.com/Neutroo/NetChat/readme-screenshots/ReadmeScreenshots/Screenshot%202022-02-21%20202649.png)
+![chatPage](https://raw.githubusercontent.com/Neutroo/NetChat/readme-screenshots/ReadmeScreenshots/Screenshot%202022-02-21%20202659.png)
 
 ## Built With
 * [.NET Framework 4.7.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472) - The framework used
