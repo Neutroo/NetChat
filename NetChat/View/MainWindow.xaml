@@ -11,5 +11,5 @@
         Closing="WindowClosing"
         WindowStartupLocation="CenterScreen">
 
-    <Frame x:Name="MainFrame" Height="720"></Frame>
+    <Frame x:Name="MainFrame" Height="720"/>
 </Window>

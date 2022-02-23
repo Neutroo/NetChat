@@ -16,11 +16,6 @@ namespace NetChat.View
             if (e.LeftButton == MouseButtonState.Pressed) DragMove();
         }
 
-        private void ButtonClose(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(ChatPage.Client != null)
