@@ -11,11 +11,6 @@ namespace NetChat.View
             MainFrame.Content = new LoginPage();
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed) DragMove();
-        }
-
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(ChatPage.Client != null)
