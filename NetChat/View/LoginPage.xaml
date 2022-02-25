@@ -145,13 +145,9 @@
                     Width="146"
                     Height="30" 
                     Template="{DynamicResource ButtonBaseControlTemplate1}" 
-                    FontSize="14" Click="ButtonLogIn" Background="Transparent">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="White"/>
-                    </Style>
-                </Button.Style>
+                    FontSize="14" 
+                    Click="ButtonLogIn" 
+                    Foreground="White">
             </Button>
 
             <!--Validation-->
