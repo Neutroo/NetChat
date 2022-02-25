@@ -165,8 +165,13 @@
                 Template="{DynamicResource ButtonBaseControlTemplate1}" 
                 BorderBrush="#FF07F3F1" 
                 FontSize="15" 
-                Click="ButtonLeave"
-                Foreground="White">
+                Background="Transparent" Click="ButtonLeave">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </Button.Style>
         </Button>
 
         <!--Chat messages-->
