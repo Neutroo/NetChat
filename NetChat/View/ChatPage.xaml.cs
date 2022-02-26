@@ -16,9 +16,9 @@ namespace NetChat.View
         public ChatPage(string username)
         {
             InitializeComponent();
-            Client = new ServiceClient(new InstanceContext(this));              // Создаем клиента
-            ClientId = Client.Connect(username);                                // Запоминаем Id и присоединяемся к сервису
-            if (Client.State == CommunicationState.Faulted)                     // Если ошибка в состоянии объекта
+            Client = new ServiceClient(new InstanceContext(this));              // Create client
+            ClientId = Client.Connect(username);                                // Save Id and connecting to the server
+            if (Client.State == CommunicationState.Faulted)                     
                 throw new EndpointNotFoundException();
 
             Task.Factory.StartNew(() => Client.GetUpdate());
@@ -26,8 +26,8 @@ namespace NetChat.View
 
         public void MessageCallback(string message)
         {
-            chatMessages.Items.Add(message);                                                        // Выводим сообщения от пользователя на экран
-            chatMessages.ScrollIntoView(chatMessages.Items[chatMessages.Items.Count - 1]);          // Скролим до самого последнего сообщения           
+            chatMessages.Items.Add(message);                                                        // Print users message on the screen
+            chatMessages.ScrollIntoView(chatMessages.Items[chatMessages.Items.Count - 1]);          // Scroll to the last message          
         }
 
         public void Update()

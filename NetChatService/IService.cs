@@ -8,22 +8,22 @@ namespace NetChatService
     public interface IService
     {
         [OperationContract]
-        int Connect(string name);                       // Подключение пользователя к сервису
+        int Connect(string name);                       // Connect user to the server
         [OperationContract]
-        void Disconnect(int id);                        // Отключение пользователя от сервиса
+        void Disconnect(int id);                        // Disconnect user from the server
         [OperationContract(IsOneWay = true)]
-        void SendMessage(string message, int id = 0);   // Отправка сообщения от пользователя - сервису
+        void SendMessage(string message, int id = 0);   // Send message from the user to the server
         [OperationContract]
-        IEnumerable<string> UsersList();                // Получение списка пользователей
+        IEnumerable<string> UsersList();                // Get list of the users
         [OperationContract(IsOneWay = true)]
-        void GetUpdate();                               // Запрос на обновление
+        void GetUpdate();                               // Request to update
     }
 
     public interface IServerCallback
     {
         [OperationContract(IsOneWay = true)]
-        void MessageCallback(string message);           // Отправка сообщения от сервиса всем пользователям
+        void MessageCallback(string message);           // Send message from server to all users 
         [OperationContract(IsOneWay = true)]
-        void Update();                                  // Обновление данных
+        void Update();                                  // Data update
     }
 }

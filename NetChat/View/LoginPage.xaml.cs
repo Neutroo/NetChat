@@ -28,7 +28,7 @@ namespace NetChat.View
             {
                 try
                 {
-                    Application.Current.MainWindow.Content = new ChatPage(Username.Text);    // Переходим на страницу с чатом
+                    Application.Current.MainWindow.Content = new ChatPage(Username.Text);    // Going to the page with chat
                 }
                 catch (System.ServiceModel.EndpointNotFoundException)
                 {

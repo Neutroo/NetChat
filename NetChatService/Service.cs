@@ -7,11 +7,11 @@ using NetChatService.Model;
 
 namespace NetChatService
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]     // Создание единого сервиса для всех клиентов
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]     // Create single server for all users
     public class Service : IService
     {
-        private List<User> users = new List<User>();   // Список пользователей присоединенных к сервису
-        private int genId = 1;                         // Для создания уникального id пользователя
+        private List<User> users = new List<User>();   // List of users connected to the service
+        private int genId = 1;                         // To create unique id for users 
 
         public int Connect(string name)
         {
@@ -30,10 +30,10 @@ namespace NetChatService
 
         public void Disconnect(int id)
         {
-            User user = users.FirstOrDefault(u => u.Id == id);         // Ищем пользователя из списка по id
-            if (user != null)                                          // Если такой есть
+            User user = users.FirstOrDefault(u => u.Id == id);         // Search for user by id for the user list
+            if (user != null)                                          // If there is one
             {
-                users.Remove(user);                                    // Удаляем
+                users.Remove(user);                                    // Remove it
                 SendMessage($"{user.Name} left the chat.");
             }
 
@@ -44,11 +44,11 @@ namespace NetChatService
         {
             foreach (var elem in users)
             {
-                var user = users.FirstOrDefault(u => u.Id == id);                   // Ищем пользователя из списка по id
+                var user = users.FirstOrDefault(u => u.Id == id);                   // Search for user by id for the user list
 
                 string answer = (user != null) ?
-                    $"{user.Name} {DateTime.Now.ToShortTimeString()}\n{message}" :  // Сообщение пользователя
-                    $"{message} {DateTime.Now.ToShortTimeString()}";                // Сообщения о подключении/отключении пользователя
+                    $"{user.Name} {DateTime.Now.ToShortTimeString()}\n{message}" :  // User message
+                    $"{message} {DateTime.Now.ToShortTimeString()}";                // Message about connection/disconnection of the user
 
                 elem.OpContext.GetCallbackChannel<IServerCallback>().MessageCallback($"{answer}");
             }
